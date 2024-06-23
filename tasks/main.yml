@@ -33,5 +33,14 @@
     - not git_install_from_source | bool
     - ansible_distribution == 'Archlinux'
 
+- name: Set Git global configuration
+  become: false
+  block:
+    - name: Set git user.name
+      command: git config --global user.name "{{ git_global_config.user_name }}"
+    - name: Set git user.email
+      command: git config --global user.email "{{ git_global_config.user_email }}"
+  when: enable_git_global_config
+
 - import_tasks: install-from-source.yml
   when: git_install_from_source | bool

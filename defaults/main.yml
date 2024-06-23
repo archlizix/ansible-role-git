@@ -20,3 +20,10 @@ git_install_from_source_force_update: false
 
 # Leave this at it's default.
 git_reinstall_from_source: false
+
+# If set to TRUE, global git configuration will be set using the values specified
+# under 'git_config_global'.
+enable_git_global_config: false
+git_config_global:
+  user.name: "your_name"
+  user.email: "your_email@example.com"
