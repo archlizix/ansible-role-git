@@ -20,5 +20,18 @@
     - not git_install_from_source | bool
     - ansible_os_family == 'Debian'
 
+- name: Update pacman cache (Archlinux)
+  pacman:
+    update_cache: yes
+  when: ansible_distribution == 'Archlinux'
+
+- name: Ensure git is installed (Archlinux)
+  pacman:
+    name: "{{ git_packages }}"
+    state: present
+  when:
+    - not git_install_from_source | bool
+    - ansible_distribution == 'Archlinux'
+
 - import_tasks: install-from-source.yml
   when: git_install_from_source | bool
